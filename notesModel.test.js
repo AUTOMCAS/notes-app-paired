@@ -15,6 +15,8 @@ describe('NotesModel', () => {
   it('adds two notes to the notes array and returns them', () => {
     const notesModel = new NotesModel();
     notesModel.addNote('Pet the cat');
-    expect(notesModel.getNotes()).toEqual(['Pet the cat']);
+    notesModel.addNote('Be the cats slave');
+
+    expect(notesModel.getNotes()).toEqual(['Pet the cat', 'Be the cats slave']);
   });
 });
