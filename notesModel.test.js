@@ -19,4 +19,11 @@ describe('NotesModel', () => {
 
     expect(notesModel.getNotes()).toEqual(['Pet the cat', 'Be the cats slave']);
   });
+
+  it('empties the list and returns an empty list when only one element', () => {
+    const notesModel = new NotesModel();
+    notesModel.addNote('Pet the cat');
+    notesModel.reset();
+    expect(notesModel.getNotes()).toEqual([]);
+  });
 });
