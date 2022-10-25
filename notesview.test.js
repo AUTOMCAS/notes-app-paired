@@ -10,7 +10,7 @@ describe('Page view', () => {
     document.body.innerHTML = fs.readFileSync('./index.html');
 
     const notesView = new NotesView();
-    expect(document.querySelectorAll('p').length).toBe(null);
+    expect(document.querySelectorAll('h1').length).toBe(1);
   });
 });
 
@@ -19,6 +19,6 @@ describe('displayNotes', () => {
     document.body.innerHTML = fs.readFileSync('./index.html');
     const notesView = new NotesView();
 
-    expect(notesView.displayNotes).toEqual([]);
+    expect(notesView.displayNotes()).toEqual(null);
   });
 });
