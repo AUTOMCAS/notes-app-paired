@@ -1,7 +1,7 @@
 {
   "name": "notesapp",
   "version": "1.0.0",
-  "description": "",
+  "description": "Model class: NotesModel notesModel.js notesModel.test.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,7 +11,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jest": "^29.2.1",
-    "jest-environment-jsdom": "^29.2.1"
-  }
+    "jest": "^29.2.2",
+    "jest-environment-jsdom": "^29.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PatriciaGN/notes-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PatriciaGN/notes-app/issues"
+  },
+  "homepage": "https://github.com/PatriciaGN/notes-app#readme"
 }
