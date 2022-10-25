@@ -23,4 +23,21 @@ describe('Notes view', () => {
     // 3. There should now be 2 div.note on the page
     expect(document.querySelectorAll('div.note').length).toEqual(2);
   });
+
+  it('displays the notes as input from the user', () => {
+    const model = new NotesModel();
+    const view = new NotesView(model);
+
+    const buttonEl = document.querySelector('#add-note');
+    const inputEl = document.querySelector('#note-input');
+
+    inputEl.value = 'Pet the cat';
+
+    buttonEl.click();
+
+    expect(document.querySelector('#add-note')).not.toBeNull();
+    expect(document.querySelector('div#notes').innerText).toEqual(
+      'Pet the cat'
+    );
+  });
 });
