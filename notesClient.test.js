@@ -1,4 +1,4 @@
-const Client = require('./client');
+const NotesClient = require('./notesClient');
 
 // This makes `fetch` available to our test
 // (it is not by default, as normally `fetch` is only
@@ -8,7 +8,7 @@ require('jest-fetch-mock').enableMocks();
 describe('Client class', () => {
   it('calls fetch and loads data', (done) => {
     // 1. Instantiate the class
-    const client = new Client();
+    const notesClient = new NotesClient();
 
     // 2. We mock the response from `fetch`
     // The mocked result will depend on what your API
@@ -17,8 +17,7 @@ describe('Client class', () => {
     // possible (it should have the same fields).
     fetch.mockResponseOnce(
       JSON.stringify({
-        name: 'Some value',
-        id: 123,
+        notes: ['This note is coming from the server'],
       })
     );
 
@@ -26,9 +25,11 @@ describe('Client class', () => {
     // When the HTTP response is received, the callback will be called.
     // We then use `expect` to assert the data from the server contain
     // what it should.
-    client.loadData((returnedDataFromApi) => {
-      expect(returnedDataFromApi.name).toBe('Some value');
-      expect(returnedDataFromApi.id).toBe(123);
+    notesClient.loadNotes((returnedDataFromApi) => {
+      console.log(returnedDataFromApi.notes);
+      expect(returnedDataFromApi.notes).toEqual([
+        'This note is coming from the server',
+      ]);
 
       // 4. Tell Jest our test can now end.
       done();
