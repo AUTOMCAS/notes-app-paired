@@ -35,10 +35,33 @@ describe('Notes view', () => {
 
     const buttonEl = document.querySelector('#add-note-button');
     buttonEl.click();
-    console.log(model.getNotes());
     expect(document.querySelectorAll('div.note').length).toEqual(1);
     expect(document.querySelectorAll('div.note')[0].textContent).toEqual(
       'Pet the cat'
+    );
+  });
+
+  it('displays the right number of notes', () => {
+    document.body.innerHTML = fs.readFileSync('./index.html');
+
+    const model = new NotesModel();
+    const view = new NotesView(model);
+
+    const inputEl = document.querySelector('#add-note-input');
+    inputEl.value = 'Pet the cat';
+
+    const buttonEl = document.querySelector('#add-note-button');
+    buttonEl.click();
+
+    const inputEl2 = document.querySelector('#add-note-input');
+    inputEl2.value = 'Pet the dog';
+
+    buttonEl.click();
+
+    console.log(model.getNotes());
+    expect(document.querySelectorAll('div.note').length).toEqual(2);
+    expect(document.querySelectorAll('div.note')[1].textContent).toEqual(
+      'Pet the dog'
     );
   });
 });
