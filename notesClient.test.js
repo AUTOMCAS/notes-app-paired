@@ -29,7 +29,9 @@ describe('Client class', () => {
       console.log(returnedDataFromApi.notes);
       expect(returnedDataFromApi.notes).toEqual([
         'This note is coming from the server',
-      ]);
+      ]); // Because returnDataFromApi.notes is an array, we need
+      // to use .toEqual. If it was a string, boolean or number,
+      // we would use toBe.
 
       // 4. Tell Jest our test can now end.
       done();
