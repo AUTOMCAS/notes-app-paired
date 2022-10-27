@@ -68,19 +68,56 @@ describe('Notes view', () => {
   });
 
   describe('displayNotesFromApi', () => {
-    xit('fetches the data from the client and displays a note', (done) => {
-      const mockNotesClient = {
-        loadNotes: (callback) => (callback({ 'This note is coming from the server' }))
-      }
+    it('fetches the data from the client and displays a note', (done) => {
+      document.body.innerHTML = fs.readFileSync('./index.html');
+
+      const notesClient = new NotesClient();
       const notesModel = new NotesModel();
+      notesModel.reset();
       const notesView = new NotesView(notesModel, notesClient);
 
+      fetch.mockResponseOnce(
+        JSON.stringify({ notes: ['This note is coming from the server'] })
+      );
 
-      notesView.displayNotesFromApi(); // This should go after loadNotes
+      // notesClient.loadNotes((returnedDataFromApi) => {
+      //   expect(returnedDataFromApi.notes).toEqual([
+      //     'This note is coming from the server',
+      //   ]);
 
+      notesView.displayNotesFromApi();
+
+      // notesClient.loadNotes(() => {
+      //   expect(fetch.mock.calls.length).toEqual(1);
+      //   done();
+      // });
       expect(document.querySelectorAll('div.note')[0].textContent).toEqual(
-          'This note is coming from the server');
+        'This note is coming from the server'
+      );
       done();
     });
   });
 });
+
+// require('jest-fetch-mock').enableMocks();
+
+// describe('GithubClient class', () => {
+//   it('calls fetch and loads repo info', (done) => {
+//     const client = new GithubClient();
+//     fetch.mockResponseOnce(
+//       JSON.stringify({
+//         name: 'rails/rails',
+//         description: 'Ruby on Rails',
+//       })
+//     );
+
+//     client.getRepoInfo('rails/rails', (repoInfo) => {
+//       expect(repoInfo.description).toBe('Ruby on Rails');
+
+//       // Refer to
+//       // https://github.com/makersacademy/javascript-fundamentals/blob/main/pills/testing_asynchronous_code.md#testing-callbacks
+//       // if you're unsure why we are using this done() function.
+//       done();
+//     });
+//   });
+// });

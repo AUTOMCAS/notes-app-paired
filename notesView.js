@@ -34,7 +34,12 @@ class NotesView {
   }
 
   displayNotesFromApi() {
-    this.client.loadNotes(console.log); // Display loaded notes on the page
+    // loadNotes on client class
+    // setNotes - takes the loaded notes and adds them to notesModel
+    // viewNotes - display the notes on page
+    this.client.loadNotes((notes) => {
+      this.model.setNotes(notes);
+    }); // Display loaded notes on the page
   }
 }
 
