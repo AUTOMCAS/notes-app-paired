@@ -71,14 +71,16 @@ describe('Notes view', () => {
     it('fetches the data from the client and displays a note', (done) => {
       document.body.innerHTML = fs.readFileSync('./index.html');
 
-      const notesClient = new NotesClient();
       const notesModel = new NotesModel();
       notesModel.reset();
-      const notesView = new NotesView(notesModel, notesClient);
 
-      fetch.mockResponseOnce(
-        JSON.stringify({ notes: ['This note is coming from the server'] })
-      );
+      const mockClient = {
+        loadNotes: (callback) => {
+          callback(['This note is coming from the server']);
+        },
+      };
+
+      const notesView = new NotesView(notesModel, mockClient);
 
       // notesClient.loadNotes((returnedDataFromApi) => {
       //   expect(returnedDataFromApi.notes).toEqual([

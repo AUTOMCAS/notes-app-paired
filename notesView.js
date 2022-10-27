@@ -34,13 +34,25 @@ class NotesView {
   }
 
   displayNotesFromApi() {
-    // loadNotes on client class
-    // setNotes - takes the loaded notes and adds them to notesModel
-    // viewNotes - display the notes on page
     this.client.loadNotes((notes) => {
       this.model.setNotes(notes);
-    }); // Display loaded notes on the page
+      this.displayNotes();
+    });
   }
 }
 
 module.exports = NotesView;
+
+// function firstFunction(_callback) {
+//   // do some asynchronous work
+//   // and when the asynchronous stuff is complete
+//   _callback();
+// }
+
+// function secondFunction() {
+//   // call first function and pass in a callback function which
+//   // first function runs when it has completed
+//   firstFunction(function () {
+//     console.log("huzzah, I'm done!");
+//   });
+// }
