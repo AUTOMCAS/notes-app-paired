@@ -6,6 +6,9 @@ const fs = require('fs');
 
 const NotesModel = require('./notesModel');
 const NotesView = require('./notesView');
+const NotesClient = require('./notesClient');
+
+require('jest-fetch-mock').enableMocks();
 
 describe('Notes view', () => {
   it('displays two notes', () => {
@@ -58,10 +61,26 @@ describe('Notes view', () => {
 
     buttonEl.click();
 
-    console.log(model.getNotes());
     expect(document.querySelectorAll('div.note').length).toEqual(2);
     expect(document.querySelectorAll('div.note')[1].textContent).toEqual(
       'Pet the dog'
     );
+  });
+
+  describe('displayNotesFromApi', () => {
+    xit('fetches the data from the client and displays a note', (done) => {
+      const mockNotesClient = {
+        loadNotes: (callback) => (callback({ 'This note is coming from the server' }))
+      }
+      const notesModel = new NotesModel();
+      const notesView = new NotesView(notesModel, notesClient);
+
+
+      notesView.displayNotesFromApi(); // This should go after loadNotes
+
+      expect(document.querySelectorAll('div.note')[0].textContent).toEqual(
+          'This note is coming from the server');
+      done();
+    });
   });
 });

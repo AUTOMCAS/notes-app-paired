@@ -6,4 +6,4 @@ const notesClient = new NotesClient();
 const notesModel = new NotesModel();
 const notesView = new NotesView(notesModel, notesClient);
 
-notesView.displayNotes();
+notesView.displayNotesFromApi();

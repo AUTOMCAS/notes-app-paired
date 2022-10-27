@@ -26,4 +26,12 @@ describe('NotesModel', () => {
     notesModel.reset();
     expect(notesModel.getNotes()).toEqual([]);
   });
+
+  it('Sets the given array of comma separated notes as this notes', () => {
+    const notesModel = new NotesModel();
+    const notes = ['Get another cat', 'Get a dog'];
+    notesModel.setNotes(notes);
+
+    expect(notesModel.getNotes()).toEqual(['Get another cat', 'Get a dog']);
+  });
 });

@@ -26,7 +26,6 @@ describe('Client class', () => {
     // We then use `expect` to assert the data from the server contain
     // what it should.
     notesClient.loadNotes((returnedDataFromApi) => {
-      console.log(returnedDataFromApi.notes);
       expect(returnedDataFromApi.notes).toEqual([
         'This note is coming from the server',
       ]); // Because returnDataFromApi.notes is an array, we need
