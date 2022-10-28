@@ -37,7 +37,7 @@ describe('Client class', () => {
     });
   });
 
-  it('Creates a new note on server', (done) => {
+  xit('Creates a new note on server', (done) => {
     const notesClient = new NotesClient();
 
     fetch.mockResponseOnce(
@@ -51,6 +51,44 @@ describe('Client class', () => {
       expect(returnedDataFromApi.notes.length).toEqual(1);
       expect(returnedDataFromApi.notes[0]).toEqual('This note is new!');
       done();
+    });
+  });
+
+  it('adds a new note and loads all notes', (done) => {
+    const notesClient = new NotesClient();
+
+    fetch.mockResponseOnce(
+      JSON.stringify({
+        notes: ['This is a new note'],
+      })
+    );
+
+    notesClient.loadNotes((returnedDataFromApi) => {
+      expect(returnedDataFromApi.notes.length).toEqual(1);
+
+      done();
+
+      // const client = new NotesClient();
+
+      // fetch.mockResponseOnce(
+      //   JSON.stringify({
+      //     content: 'This is a note',
+      //   })
+      // );
+
+      // let newNoteFromAPI = 'This is a note';
+
+      // notesClient.loadNotes((returnedDataFromApi) => {
+      //   expect(returnedDataFromApi.notes).toEqual({
+      //     content: 'This is a note',
+      //   });
+
+      //   // //client.createNote(newNoteFromAPI, (returnedDataFromApi) => {
+      //   //   expect(returnedDataFromApi).toEqual({
+      //   //     content: 'This is a note',
+      //   //   });
+
+      //   done();
     });
   });
 });

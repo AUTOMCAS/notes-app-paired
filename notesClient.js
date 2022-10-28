@@ -7,22 +7,20 @@ class NotesClient {
       });
   }
 
-  createNote(newNote, callback, displayError) {
+  createNote(newNote) {
     fetch('http://localhost:3000/notes', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(newNote),
+      body: JSON.stringify({ content: newNote }),
     })
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data);
-        callback(data);
       })
       .catch((error) => {
-        console.log('error');
-        displayError(error);
+        console.log(error);
       });
   }
 }

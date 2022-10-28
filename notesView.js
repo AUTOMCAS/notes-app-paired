@@ -7,9 +7,16 @@ class NotesView {
 
     this.buttonEl.addEventListener('click', () => {
       const newNote = document.querySelector('#add-note-input').value;
+
       this.addNewNote(newNote);
+      document.querySelectorAll('.note').forEach((note) => {
+        note.remove();
+      });
+      this.displayNotesFromApi();
+      document.querySelectorAll('.note').forEach((note) => {
+        note.remove();
+      });
       document.querySelector('#add-note-input').value = '';
-      // this.displayNotes();
     });
   }
 
@@ -19,7 +26,6 @@ class NotesView {
     });
     const notes = this.model.getNotes();
 
-    // For each note, create and append a new element on the main container
     notes.forEach((note) => {
       const noteEl = document.createElement('div');
       noteEl.textContent = note;
@@ -29,7 +35,10 @@ class NotesView {
   }
 
   addNewNote(newNote) {
-    this.model.addNote(newNote);
+    // this.model.addNote(newNote);
+    // this.client.createNote(newNote, () =>
+    this.client.createNote(newNote);
+    // this.displayNotesFromApi();
     this.displayNotes();
   }
 
@@ -42,17 +51,3 @@ class NotesView {
 }
 
 module.exports = NotesView;
-
-// function firstFunction(_callback) {
-//   // do some asynchronous work
-//   // and when the asynchronous stuff is complete
-//   _callback();
-// }
-
-// function secondFunction() {
-//   // call first function and pass in a callback function which
-//   // first function runs when it has completed
-//   firstFunction(function () {
-//     console.log("huzzah, I'm done!");
-//   });
-// }
