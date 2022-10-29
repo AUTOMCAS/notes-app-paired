@@ -9,13 +9,6 @@ class NotesView {
       const newNote = document.querySelector('#add-note-input').value;
 
       this.addNewNote(newNote);
-      document.querySelectorAll('.note').forEach((note) => {
-        note.remove();
-      });
-      this.displayNotesFromApi();
-      document.querySelectorAll('.note').forEach((note) => {
-        note.remove();
-      });
       document.querySelector('#add-note-input').value = '';
     });
   }
@@ -35,10 +28,11 @@ class NotesView {
   }
 
   addNewNote(newNote) {
-    // this.model.addNote(newNote);
     // this.client.createNote(newNote, () =>
-    this.client.createNote(newNote);
     // this.displayNotesFromApi();
+
+    // this.model.addNote(newNote);
+    this.client.createNote(newNote);
     this.displayNotes();
   }
 
