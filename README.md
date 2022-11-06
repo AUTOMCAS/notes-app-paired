@@ -1,34 +1,21 @@
-Model class: NotesModel
-notesModel.js
-notesModel.test.js
+###
 
-const model = new NotesModel();
+This simple notes web application allows a user to create new notes which are then stored on a backend server.
+New notes are then displayed on the page.
 
-model.getNotes(); // should return []
 
-model.addNote('Buy milk');
-model.addNote('Go to the gym');
+To run the backend:
+1. `cd notes-backend-server`
+2. Run `npm install`
+3. Run the program using `node index.js` Leave it running in the background!
 
-model.getNotes(); // should now return ['Buy milk', 'Go to the gym']
+To run the page from main directory:
+1. Run `npm install` 
+1. from the main directory: `open index.html`
 
-model.reset();
 
-model.getNotes(); // should now return []
-
-it('returns an empty list of items', () => {
-const model = new NotesModel();
-
-    expect(model.getItems()).toEqual([])
-
-})
-
-it('adds a new item to the list', () => {
-const model = new NotesModel('My first note);
-
-    expect(model.getItems()).toEqual(['My first note]);
-
-})
-
-it('clears all items from the list', () => {
-
-})
+To install esbuild(to manage file loading)
+From main directory:
+`$ npm install -g esbuild`
+`npm install`
+`npm run build`

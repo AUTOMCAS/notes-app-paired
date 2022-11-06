@@ -28,10 +28,6 @@ class NotesView {
   }
 
   addNewNote(newNote) {
-    // this.client.createNote(newNote, () =>
-    // this.displayNotesFromApi();
-
-    // this.model.addNote(newNote);
     this.client.createNote(newNote);
     this.displayNotes();
   }
